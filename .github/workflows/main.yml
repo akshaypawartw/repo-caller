@@ -1,0 +1,21 @@
+name: CI/CD Workflow for Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ci-workflow:
+    name: Run CI workflow for the Application
+    uses: akshaypawartw/repo-called/.github/workflows/backend-ci.yaml@main
+    with:
+      appName: luckyroll
+    secrets: inherit
+
+  # dev-deploy:
+  #   name: Deploy Dev Environment for the Application
+  #   needs: [ci-workflow]
+  #   uses: ./.github/workflows/deploy.yaml
+  #     appName: luckyroll
+  #   secrets: inherit
