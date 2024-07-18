@@ -1,1 +1,21 @@
-dasas
+name: CI/CD Workflow for Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ci-workflow:
+    name: Run CI workflow for the Application
+    uses: ./.github/workflows/backend-ci.yaml
+    with:
+      appName: luckyroll
+    secrets: inherit
+
+  dev-deploy:
+    name: Deploy Dev Environment for the Application
+    needs: [ci-workflow]
+    uses: ./.github/workflows/deploy.yaml
+      appName: luckyroll
+    secrets: inherit
